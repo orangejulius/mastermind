@@ -13,7 +13,7 @@ void stats()
         if (i%10==0)
         {
             cout<<i<<endl;
-        }
+        }//*/
         Environment e=Environment(50);
         Agent a=Agent(&e);
         string secret;
@@ -24,7 +24,7 @@ void stats()
         //cout<<secret<<endl;
         e.setSecret(secret);
         a.play(guesses);
-        while (scores.size()<guesses)
+        while (scores.size()<=guesses)
         {
             scores.push_back(0);
         }
@@ -60,21 +60,29 @@ bool Agent::play(unsigned& guesses)
     guesses=0;
     int black, white;
     string t;
+    string guess;
     while (1)
     {
         guesses++;
-        cout<<endl;
-        cout<<"number of possible guesses: "<<possibleSolutions.size()<<endl;
-        int r=rand()%(possibleSolutions.size());
-        string guess=possibleSolutions[r];
-        cout<<"guessing "<<guess<<endl;
+        //cout<<endl;
+        //cout<<"number of possible guesses: "<<possibleSolutions.size()<<endl;
+        if (guesses==1)
+        {
+            guess="aabb";
+        }
+        else
+        {
+            int r=rand()%(possibleSolutions.size());
+            guess=possibleSolutions[r];
+        }
+        //cout<<"guessing "<<guess<<endl;
 
         if (env->guess(guess,black,white))
         {
-            cout<<"score is ("<<black<<", "<<white<<")\n";
+            //cout<<"score is ("<<black<<", "<<white<<")\n";
             if (black==4)
             {
-                cout<<"won in "<<guesses-1<<" guesses\n";
+                //cout<<"won in "<<guesses<<" guesses\n";
                 return true;
             }
             else
@@ -86,10 +94,13 @@ bool Agent::play(unsigned& guesses)
                     env->score(t,guess,black2,white2);
                     if ((black2!=black)||(white2!=white))
                     {
-                            possibleSolutions.erase(i);
+                        //cout<<"score("<<t<<", "<<guess<<") "<<black<<", "<<white<<"!="<<black2<<", "<<white2<<endl;
+                        //cout<<"removing "<<t<<" with score ("<<black2<<", "<<white2<<")\n";
+                        possibleSolutions.erase(i);
                     }
                     else
                     {
+                        //cout<<"keeping "<<t<<" with score ("<<black<<", "<<white<<")\n";
                         i++;
                     }
                 }
@@ -97,7 +108,7 @@ bool Agent::play(unsigned& guesses)
         }
         else
         {
-            cout<<"lost in "<<guesses-1<<" guesses\n";
+            //cout<<"lost in "<<guesses<<" guesses\n";
             return false;
         }
     }

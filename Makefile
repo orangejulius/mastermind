@@ -1,7 +1,7 @@
 .SUFFIXES: .cc .o
 APP=proj03
 LIBS=# -lpthread
-GCC=g++ -Wall -O2 ${INCLUDE}
+GCC=g++ -Wall -O3 -ffast-math -fomit-frame-pointer -march=native ${INCLUDE}
 
 SRCS:= $(wildcard *.cc)
 OBJS=${SRCS:.cc=.o}
