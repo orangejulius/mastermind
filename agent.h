@@ -16,7 +16,7 @@ class Agent
         bool play(unsigned& guesses);
     private:
         Environment* env;
-        vector<string> possibleSolutions;
+        vector<State> possibleSolutions;
 };
 
 #endif

@@ -2,28 +2,23 @@
 #define ENVIRONMENT_H
 
 #include <iostream>
-#include <string>
+
+#include "state.h"
 
 using namespace std;
 
 int min(int a, int b);
 
-
-
-char randomColor();
-
 class Environment
 {
     public:
         Environment(unsigned max=10);
-        void setSecret(string newSecret);
-        bool guess(string guess, int& black, int& white);
-        void score (string guess, string secret, int& black, int& white);
-        string colors;
+        void setSecret(State newSecret);
+        bool guess(State g, int& black, int& white);
     private:
         int guesses;
         int maxguesses;
-        string secret;
+        State secret;
 };
 
 #endif

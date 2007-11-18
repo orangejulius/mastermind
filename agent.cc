@@ -1,10 +1,12 @@
 #include "agent.h"
 
 #include <cstdlib>
+#include <iostream>
+
+using namespace std;
 
 void stats()
 {
-    vector<string> possibleSolutions;
     vector<unsigned> scores;
     unsigned total=0;
     for (int i=0;i<6*6*6*6;i++)
@@ -16,26 +18,27 @@ void stats()
         }//*/
         Environment e=Environment(50);
         Agent a=Agent(&e);
-        string secret;
-        secret[0]=e.colors[(i/(6*6*6))%6];
-        secret[1]=e.colors[(i/(6*6))%6];
-        secret[2]=e.colors[(i/(6))%6];
-        secret[3]=e.colors[i%6];
+        char secret[4];
+        secret[0]=(i/(6*6*6))%6;
+        secret[1]=(i/(6*6))%6;
+        secret[2]=(i/(6))%6;
+        secret[3]=i%6;
+        State s(secret);
         //cout<<secret<<endl;
-        e.setSecret(secret);
+        e.setSecret(s);
         a.play(guesses);
-        while (scores.size()<=guesses)
+        while (scores.size()<guesses)
         {
             scores.push_back(0);
         }
         total+=guesses;
-        scores[guesses]++;
+        scores[guesses-1]++;
     }
 
     cout<<"moves, games solved in that # of moves"<<endl;
     for (unsigned i=0;i<scores.size();i++)
     {
-        cout<<i<<": "<<scores[i]<<endl;
+        cout<<i+1<<": "<<scores[i]<<endl;
     }
     cout<<"average: "<<total/1296.<<endl;
 }
@@ -46,12 +49,14 @@ Agent::Agent(Environment* e)
     //cout<<e->colors<<endl;
     for (int i=0;i<6*6*6*6;i++)
     {
-        string secret="abcd";
-        secret[0]=e->colors[(i/(6*6*6))%6];
-        secret[1]=e->colors[(i/(6*6))%6];
-        secret[2]=e->colors[(i/(6))%6];
-        secret[3]=e->colors[i%6];
-        possibleSolutions.push_back(secret);
+
+        char secret[4];
+        secret[0]=(i/(6*6*6))%6;
+        secret[1]=(i/(6*6))%6;
+        secret[2]=(i/(6))%6;
+        secret[3]=i%6;
+        State s(secret);;
+        possibleSolutions.push_back(s);
     }
 }
 
@@ -59,8 +64,7 @@ bool Agent::play(unsigned& guesses)
 {
     guesses=0;
     int black, white;
-    string t;
-    string guess;
+    State guess;
     while (1)
     {
         guesses++;
@@ -68,7 +72,8 @@ bool Agent::play(unsigned& guesses)
         //cout<<"number of possible guesses: "<<possibleSolutions.size()<<endl;
         if (guesses==1)
         {
-            guess="aabb";
+            char g[]={0,0,1,1};
+            guess=g;
         }
         else
         {
@@ -87,20 +92,19 @@ bool Agent::play(unsigned& guesses)
             }
             else
             {
-                for (vector<string>::iterator i=possibleSolutions.begin();i!=possibleSolutions.end();)
+                int black2, white2;
+                for (vector<State>::iterator i=possibleSolutions.begin();i!=possibleSolutions.end();)
                 {
-                    int black2, white2;
-                    t=(*i);
-                    env->score(t,guess,black2,white2);
+                    i->score(guess,black2,white2);
                     if ((black2!=black)||(white2!=white))
                     {
-                        //cout<<"score("<<t<<", "<<guess<<") "<<black<<", "<<white<<"!="<<black2<<", "<<white2<<endl;
-                        //cout<<"removing "<<t<<" with score ("<<black2<<", "<<white2<<")\n";
+                        //cout<<"score("<<*i<<", "<<guess<<") "<<black<<", "<<white<<"!="<<black2<<", "<<white2<<endl;
+                        //cout<<"removing "<<*i<<" with score ("<<black2<<", "<<white2<<")\n";
                         possibleSolutions.erase(i);
                     }
                     else
                     {
-                        //cout<<"keeping "<<t<<" with score ("<<black<<", "<<white<<")\n";
+                        //cout<<"keeping "<<*i<<" with score ("<<black<<", "<<white<<")\n";
                         i++;
                     }
                 }

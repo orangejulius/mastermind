@@ -19,6 +19,7 @@ depend:
 	makedepend ${SRCS}
 # DO NOT DELETE
 
-agent.o: agent.h environment.h
-environment.o: environment.h
-main.o: agent.h environment.h
+agent.o: agent.h environment.h state.h
+environment.o: environment.h state.h
+main.o: agent.h environment.h state.h
+state.o: state.h
