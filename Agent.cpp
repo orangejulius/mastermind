@@ -1,13 +1,30 @@
-#include "Agent.h"
+//
+// C++ Implementation: Agent
+//
+// Description: 
+//
+//
+// Author:  <>, (C) 2008
+//
+// Copyright: See COPYING file that comes with this distribution
+//
+//
 
 #include <cstdlib>
-#include <iostream>
+#include <pthread.h>
+#include <semaphore.h>
 
-using namespace std;
+#include "Agent.h"
+
+//global variables
+vector<unsigned> scores;
+
+//semaphores
+sem_t writeSem;//any thread wanting to write to a global variable must wait on this semaphore
+sem_t computing;
 
 void stats()
 {
-    vector<unsigned> scores;
     unsigned total=0;
     for (int i=0;i<6*6*6*6;i++)
     {

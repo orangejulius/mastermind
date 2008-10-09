@@ -1,3 +1,14 @@
+//
+// C++ Interface: State
+//
+// Description: 
+//
+//
+// Author:  <>, (C) 2008
+//
+// Copyright: See COPYING file that comes with this distribution
+//
+//
 #ifndef STATE_H
 #define STATE_H
 
@@ -5,10 +16,13 @@
 
 using namespace std;
 
+/**
+	@author 
+*/
 class State
 {
 	public:
-        State();
+		State();
 		State(char g[4]);
 
 		friend ostream& operator<<(ostream& out, const State& s);
