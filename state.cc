@@ -2,7 +2,6 @@
 
 #include <cstring>
 
-
 State::State()
 {
     strncpy(array,"abcd",4);
