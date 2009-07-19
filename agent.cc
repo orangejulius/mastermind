@@ -55,7 +55,7 @@ Agent::Agent(Environment* e)
         secret[1]=(i/(6*6))%6;
         secret[2]=(i/(6))%6;
         secret[3]=i%6;
-        State s(secret);;
+        State s(secret);
         possibleSolutions.push_back(s);
     }
 }
