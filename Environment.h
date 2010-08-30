@@ -16,8 +16,6 @@
 
 using namespace std;
 
-int min(int a, int b);
-
 /**
 	@author 
 */

@@ -11,12 +11,6 @@
 //
 #include "Environment.h"
 
-inline int min(int a, int b)
-{
-	if (a<b) return a;
-	else return b;
-}
-
 Environment::Environment(unsigned max)
 {
 	secret="abcd";
