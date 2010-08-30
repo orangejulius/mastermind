@@ -16,8 +16,6 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-using namespace std;
-
 //global variables
 vector<unsigned> scores;
 unsigned total=0;

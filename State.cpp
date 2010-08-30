@@ -13,6 +13,8 @@
 
 #include <cstring>
 
+using std::min;
+
 State::State()
 {
 	strncpy(array, "abcd", 4);

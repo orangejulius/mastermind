@@ -14,8 +14,8 @@
 
 #include <iostream>
 
-using namespace std;
 
+using std::ostream;
 /**
 	@author 
 */
