@@ -18,7 +18,6 @@
 
 //global variables
 vector<unsigned> scores;
-unsigned total=0;
 
 //semaphores
 sem_t writeSem;//any thread wanting to write to a global variable must wait on this semaphore
@@ -44,7 +43,6 @@ void *evenPlayGame(void* gameNum)
 		while (scores.size()<guesses) {
 			scores.push_back(0);
 		}
-		total+=guesses;
 		scores[guesses-1]++;
 		sem_post(&writeSem);
 	}
@@ -70,7 +68,6 @@ void *oddPlayGame(void* gameNum)
 		while (scores.size()<guesses) {
 			scores.push_back(0);
 		}
-		total+=guesses;
 		scores[guesses-1]++;
 		sem_post(&writeSem);
 	}
@@ -89,10 +86,12 @@ void stats()
 
 	sem_wait(&computing);
 	cout<<"moves, games solved in that # of moves"<<endl;
+	unsigned totalMoves = 0;
 	for (unsigned i = 0; i < scores.size(); i++) {
-		cout<<i + 1<<": "<<scores[i]<<endl;
+		cout<<i+1<<": "<<scores[i]<<endl;
+		totalMoves += (i+1) * scores[i];
 	}
-	cout<<"average: "<<total/1296.<<endl;
+	cout<<"average: "<<totalMoves/1296.<<endl;
 }
 
 Agent::Agent(Environment* e)
