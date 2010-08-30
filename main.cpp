@@ -9,7 +9,7 @@
 
 int main(int argc, char *argv[])
 {
-  stats();
+	stats();
 
-  return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }

@@ -11,12 +11,12 @@ void stats();
 
 class Agent
 {
-    public:
-        Agent(Environment* e);
-        bool play(unsigned& guesses);
-    private:
-        Environment* env;
-        vector<State> possibleSolutions;
+public:
+	Agent(Environment* e);
+	bool play(unsigned& guesses);
+private:
+	Environment* env;
+	vector<State> possibleSolutions;
 };
 
 #endif

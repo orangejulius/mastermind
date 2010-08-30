@@ -23,14 +23,14 @@ int min(int a, int b);
 */
 class Environment
 {
-    public:
-        Environment(unsigned max=10);
-        void setSecret(State newSecret);
-        bool guess(State g, int& black, int& white);
-    private:
-        int guesses;
-        int maxguesses;
-        State secret;
+public:
+	Environment(unsigned max=10);
+	void setSecret(State newSecret);
+	bool guess(State g, int& black, int& white);
+private:
+	int guesses;
+	int maxguesses;
+	State secret;
 };
 
 #endif
