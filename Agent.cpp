@@ -16,17 +16,29 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-//global variables
+using std::cout;
+using std::endl;
+
+#define NUM_THREADS 4
+
+// Struct for passing information to threads
+struct ThreadData
+{
+	unsigned threadId; //the id of this thread starting at 0
+};
+
+//global storage space for the number of moves each game takes to win
 vector<unsigned> scores;
+ThreadData threadData[NUM_THREADS];
 
-//semaphores
 sem_t writeSem;//any thread wanting to write to a global variable must wait on this semaphore
-sem_t computing;
-sem_t threadLimit; //limit the max number of threads
+sem_t computing;//the thread parent will wait on this semaphore until all threads are done computing
 
-void *evenPlayGame(void* gameNum)
+void* playGame(void* p_threadData)
 {
-	for (int i=0;i<6*6*6*6;i+=2) {
+	struct ThreadData* threadData;
+	threadData = (struct ThreadData* ) p_threadData;
+	for (int i=threadData->threadId;i<6*6*6*6;i+=NUM_THREADS) {
 		unsigned guesses=0;
 		Environment e=Environment(50);
 		Agent a=Agent(&e);
@@ -47,42 +59,20 @@ void *evenPlayGame(void* gameNum)
 		sem_post(&writeSem);
 	}
 	sem_post(&computing);
-}
 
-void *oddPlayGame(void* gameNum)
-{
-	for (int i=1;i<6*6*6*6;i+=2) {
-		unsigned guesses=0;
-		Environment e=Environment(50);
-		Agent a=Agent(&e);
-		char secret[4];
-		secret[0]=(i/(6*6*6))%6;
-		secret[1]=(i/(6*6))%6;
-		secret[2]=(i/(6))%6;
-		secret[3]=i%6;
-		State s(secret);
-		//cout<<secret<<endl;
-		e.setSecret(s);
-		a.play(guesses);
-		sem_wait(&writeSem);
-		while (scores.size()<guesses) {
-			scores.push_back(0);
-		}
-		scores[guesses-1]++;
-		sem_post(&writeSem);
-	}
-	sem_post(&computing);
+	return 0;
 }
 
 void stats()
 {
-	pthread_t threads[2];
+	pthread_t threads[NUM_THREADS];
 
-	sem_init(&computing,0,-1);
+	sem_init(&computing,0,1-NUM_THREADS); //this semaphore should be at 1 when all threads have finished running
 	sem_init(&writeSem,0,1);//limit number of threads accessing global variables to 1
-	int ignore = 0;
-	pthread_create(&threads[0],NULL, evenPlayGame,(void*)ignore);
-	pthread_create(&threads[1],NULL, oddPlayGame,(void*)ignore);
+	for (unsigned i=0; i<NUM_THREADS; i++) {
+		threadData[i].threadId = i;
+		pthread_create(&threads[i],NULL, playGame,(void*) &threadData[i]);
+	}
 
 	sem_wait(&computing);
 	cout<<"moves, games solved in that # of moves"<<endl;
