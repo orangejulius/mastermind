@@ -1,14 +1,3 @@
-//
-// C++ Implementation: State
-//
-// Description: 
-//
-//
-// Author:  <>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
 #include "State.h"
 
 #include <cstring>

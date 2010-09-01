@@ -1,14 +1,3 @@
-//
-// C++ Implementation: Environment
-//
-// Description: 
-//
-//
-// Author:  <>, (C) 2008
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
 #include "Environment.h"
 
 Environment::Environment(unsigned max)
