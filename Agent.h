@@ -8,11 +8,6 @@
 using std::vector;
 
 /**
- * Display statistics from the playing of each of the 1296 games of Mastermind
- */
-void stats();
-
-/**
  * Class Agent represents the AI entitity that is playing Mastermind
  */
 class Agent

@@ -2,13 +2,9 @@
 #include <config.h>
 #endif
 
-#include <cstdlib>
-
-#include "Agent.h"
+#include "Controller.h"
 
 int main(int argc, char *argv[])
 {
-	stats();
-
-	return EXIT_SUCCESS;
+	return Controller::run();
 }
