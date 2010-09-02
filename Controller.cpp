@@ -2,8 +2,11 @@
 
 #include <cstdlib>
 
+#include <boost/thread.hpp>
+
 #include "Agent.h"
 
+using boost::thread;
 using std::cout;
 using std::endl;
 
@@ -28,7 +31,8 @@ sem_t Controller::computing;
 
 bool Controller::run()
 {
-	numThreads = 4;
+	//let boost determine how many threads we can run
+	numThreads = thread::hardware_concurrency();
 	threadDataArray = new ThreadData[numThreads];
 
 	playAllGames();
