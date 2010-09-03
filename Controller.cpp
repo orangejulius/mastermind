@@ -26,9 +26,6 @@ ThreadData* Controller::threadDataArray;
 //any thread wanting to write to a global variable must wait on this semaphore
 sem_t Controller::writeSem;
 
-//the thread parent will wait on this semaphore until all threads are done computing
-sem_t Controller::computing;
-
 bool Controller::run()
 {
 	//let boost determine how many threads we can run
@@ -43,9 +40,6 @@ void Controller::playAllGames()
 {
 	thread threads[numThreads];
 
-	//this semaphore should be at 1 when all threads have finished running
-	sem_init(&computing, 0, 1 - numThreads);
-
 	//limit number of threads accessing shared variables to 1
 	sem_init(&writeSem, 0, 1);
 
@@ -55,7 +49,9 @@ void Controller::playAllGames()
 	}
 
 	//wait until all threads are done running
-	sem_wait(&computing);
+	for (unsigned i = 0; i < numThreads; i++) {
+		threads[i].join();
+	}
 
 	//output interesting information
 	cout<<"moves, games solved in that # of moves"<<endl;
@@ -97,7 +93,5 @@ void* Controller::playGamesThread(ThreadData& threadData)
 		scores[guesses-1]++;
 		sem_post(&writeSem);
 	}
-	sem_post(&computing);
-
 	return 0;
 }

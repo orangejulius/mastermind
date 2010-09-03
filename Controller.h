@@ -45,9 +45,6 @@ private:
 
 	//any thread wanting to write to a global variable must wait on this semaphore
 	static sem_t writeSem;
-
-	//the thread parent will wait on this semaphore until all threads are done computing
-	static sem_t computing;
 };
 
 #endif
