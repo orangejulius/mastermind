@@ -9,7 +9,7 @@ State::State()
 	strncpy(array, "abcd", 4);
 }
 
-State::State(char s[4])
+State::State(const char* s)
 {
 	strncpy(array,s,4);
 }

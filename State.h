@@ -22,7 +22,7 @@ public:
 	 * Create a state with a specific combination of code pegs
 	 * @param g	the combination to set
 	 */
-	State(char g[4]);
+	State(const char* g);
 
 	/**
 	 * Outputs the current combination to an output buffer
