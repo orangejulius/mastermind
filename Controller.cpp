@@ -41,7 +41,7 @@ bool Controller::run()
 
 void Controller::playAllGames()
 {
-	pthread_t threads[numThreads];
+	thread threads[numThreads];
 
 	//this semaphore should be at 1 when all threads have finished running
 	sem_init(&computing, 0, 1 - numThreads);
@@ -51,7 +51,7 @@ void Controller::playAllGames()
 
 	for (unsigned i = 0; i < numThreads; i++) {
 		threadDataArray[i].threadId = i;
-		pthread_create(&threads[i], NULL, &Controller::playGamesThread, (void*) &threadDataArray[i]);
+		threads[i] = thread(boost::ref(Controller::playGamesThread), threadDataArray[i]);
 	}
 
 	//wait until all threads are done running
@@ -70,14 +70,10 @@ void Controller::playAllGames()
 	cout<<"total games: "<<totalGames<<endl;
 }
 
-void* Controller::playGamesThread(void* p_threadData)
+void* Controller::playGamesThread(ThreadData& threadData)
 {
-	//convert the void pointer to useful data
-	struct ThreadData* threadData;
-	threadData = (struct ThreadData* ) p_threadData;
-
 	//play through all the games assigned to this thread
-	for (int i = threadData->threadId; i < 6*6*6*6; i += numThreads) {
+	for (int i = threadData.threadId; i < 6*6*6*6; i += numThreads) {
 		//initialize the state for this game
 		unsigned guesses = 0;
 		Environment e = Environment(50);

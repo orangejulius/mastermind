@@ -33,7 +33,7 @@ private:
 	/**
 	 * Function that is run in a thread to play all games of Mastermind
 	 */
-	static void* playGamesThread(void* p_threadData);
+	static void* playGamesThread(ThreadData& threadData);
 
 	//storage space for the number of moves each game takes to win
 	static vector<unsigned> scores;
