@@ -1,13 +1,13 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <vector>
+#include <boost/thread.hpp>
 
-#include <pthread.h>
-#include <semaphore.h>
+#include <vector>
 
 #include "Environment.h"
 
+using boost::mutex;
 using std::vector;
 
 //Struct for passing information to threads
@@ -44,7 +44,7 @@ private:
 	static ThreadData* threadDataArray;
 
 	//any thread wanting to write to a global variable must wait on this semaphore
-	static sem_t writeSem;
+	static mutex scoresMutex;
 };
 
 #endif

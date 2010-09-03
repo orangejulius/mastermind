@@ -2,8 +2,6 @@
 
 #include <cstdlib>
 
-#include <boost/thread.hpp>
-
 #include "Agent.h"
 
 using boost::thread;
@@ -23,8 +21,8 @@ unsigned Controller::numThreads;
 //storage for information to pass to threads
 ThreadData* Controller::threadDataArray;
 
-//any thread wanting to write to a global variable must wait on this semaphore
-sem_t Controller::writeSem;
+//any thread wanting to write to the scores must wait on this mutex
+mutex Controller::scoresMutex;
 
 bool Controller::run()
 {
@@ -39,9 +37,6 @@ bool Controller::run()
 void Controller::playAllGames()
 {
 	thread threads[numThreads];
-
-	//limit number of threads accessing shared variables to 1
-	sem_init(&writeSem, 0, 1);
 
 	for (unsigned i = 0; i < numThreads; i++) {
 		threadDataArray[i].threadId = i;
@@ -86,12 +81,12 @@ void* Controller::playGamesThread(ThreadData& threadData)
 		a.play(guesses);
 
 		///update the list of scores for all games
-		sem_wait(&writeSem);
+		scoresMutex.lock();
 		while (scores.size() < guesses) {
 			scores.push_back(0);
 		}
 		scores[guesses-1]++;
-		sem_post(&writeSem);
+		scoresMutex.unlock();
 	}
 	return 0;
 }
