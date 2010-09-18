@@ -77,11 +77,14 @@ void stats()
 	sem_wait(&computing);
 	cout<<"moves, games solved in that # of moves"<<endl;
 	unsigned totalMoves = 0;
+	unsigned totalGames = 0;
 	for (unsigned i = 0; i < scores.size(); i++) {
 		cout<<i+1<<": "<<scores[i]<<endl;
+		totalGames += scores[i];
 		totalMoves += (i+1) * scores[i];
 	}
-	cout<<"average: "<<totalMoves/1296.<<endl;
+	cout<<"total games: "<<totalGames<<endl;
+	cout<<"average: "<<totalMoves/(float)totalGames<<endl;
 }
 
 Agent::Agent(Environment* e)
