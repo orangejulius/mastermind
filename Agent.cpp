@@ -26,14 +26,8 @@ bool Agent::play(unsigned& guesses)
 	while (1) {
 		guesses++;
 		//make a guess
-		//first guess a specific state, and then after that a random possible solution
-		if (guesses == 1) {
-			char g[] = {0,0,1,1};
-			guess = g;
-		} else {
-			int r = rand() % possibleSolutions.size();
-			guess = possibleSolutions[r];
-		}
+		//simply take the first guess that is still consistent with the known information
+		guess = possibleSolutions[0];
 
 		//ask the environment to score the guess
 		//false return value means no more guesses are allowed
