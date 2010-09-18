@@ -11,6 +11,26 @@ void Environment::setSecret(State newSecret)
 	secret = newSecret;
 }
 
+unsigned Environment::getNumPegs() const
+{
+	return secret.getNumPegs();
+}
+
+unsigned Environment::getNumColors() const
+{
+	return secret.getNumColors();
+}
+
+unsigned int Environment::getNumGames() const
+{
+	return secret.getNumGames();
+}
+
+State Environment::getGameByNumber(unsigned int gameNum) const
+{
+	return secret.getGameByNumber(gameNum);
+}
+
 bool Environment::guess(State guess, unsigned int& black, unsigned int& white)
 {
 	if (guessesMade < maxGuesses) {

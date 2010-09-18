@@ -24,6 +24,26 @@ public:
 	void setSecret(State newSecret);
 
 	/**
+	* Get the number of pegs in combinations in this environment
+	* @return the number of pegs
+	*/
+	unsigned int getNumPegs() const;
+
+	/**
+	* Get the number of possible colors for combinations in this environment
+	* @return the number of possible colors
+	*/
+	unsigned int getNumColors() const;
+
+	/**
+	* Get the number of games possible in this environment
+	* @return the number of possible games
+	*/
+	unsigned int getNumGames() const;
+
+	State getGameByNumber(unsigned int gameNum) const;
+
+	/**
 	 * Record a guess made by the codebreaker and return the score of the guess against the
 	 * secret code
 	 * @param g	the guess made the codebreaker
