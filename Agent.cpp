@@ -18,7 +18,7 @@ Agent::Agent(Environment* e)
 	}
 }
 
-bool Agent::play(unsigned& guesses)
+bool Agent::play(unsigned int& guesses)
 {
 	guesses = 0;
 	int black, white;

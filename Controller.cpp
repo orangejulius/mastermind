@@ -10,13 +10,13 @@ using std::endl;
 
 struct ThreadData
 {
-	unsigned threadId; //the id of this thread
+	unsigned int threadId; //the id of this thread
 };
 
 //storage space for the number of moves each game takes to win
-vector<unsigned> Controller::scores;
+vector<unsigned int> Controller::scores;
 
-unsigned Controller::numThreads;
+unsigned int Controller::numThreads;
 
 //storage for information to pass to threads
 ThreadData* Controller::threadDataArray;
@@ -38,21 +38,21 @@ void Controller::playAllGames()
 {
 	thread threads[numThreads];
 
-	for (unsigned i = 0; i < numThreads; i++) {
+	for (unsigned int i = 0; i < numThreads; i++) {
 		threadDataArray[i].threadId = i;
 		threads[i] = thread(boost::ref(Controller::playGamesThread), threadDataArray[i]);
 	}
 
 	//wait until all threads are done running
-	for (unsigned i = 0; i < numThreads; i++) {
+	for (unsigned int i = 0; i < numThreads; i++) {
 		threads[i].join();
 	}
 
 	//output interesting information
 	cout<<"moves, games solved in that # of moves"<<endl;
-	unsigned totalMoves = 0;
-	unsigned totalGames = 0;
-	for (unsigned i = 0; i < scores.size(); i++) {
+	unsigned int totalMoves = 0;
+	unsigned int totalGames = 0;
+	for (unsigned int i = 0; i < scores.size(); i++) {
 		cout<<i+1<<": "<<scores[i]<<endl;
 		totalMoves += (i+1) * scores[i];
 		totalGames += scores[i];
@@ -66,7 +66,7 @@ void* Controller::playGamesThread(ThreadData& threadData)
 	//play through all the games assigned to this thread
 	for (int i = threadData.threadId; i < 6*6*6*6; i += numThreads) {
 		//initialize the state for this game
-		unsigned guesses = 0;
+		unsigned int guesses = 0;
 		Environment e = Environment(50);
 		Agent a = Agent(&e);
 		char secret[4];

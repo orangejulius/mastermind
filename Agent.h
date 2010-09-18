@@ -24,7 +24,7 @@ public:
 	 * @param guesses	reference that after execution will contain the number of guesses made
 	 * @return bool		true if the agent won the game
 	 */
-	bool play(unsigned& guesses);
+	bool play(unsigned int& guesses);
 private:
 	Environment* env;
 	vector<State> possibleSolutions;

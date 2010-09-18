@@ -15,7 +15,7 @@ public:
 	 * Initialize the environment
 	 * @param max	the maximum number of guesses the codebreaker can make before losing
 	 */
-	Environment(unsigned max=10);
+	Environment(unsigned int max=10);
 
 	/**
 	 * Set the secret combination that the codebreaker is trying to guess

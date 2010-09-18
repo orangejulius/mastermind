@@ -36,9 +36,9 @@ private:
 	static void* playGamesThread(ThreadData& threadData);
 
 	//storage space for the number of moves each game takes to win
-	static vector<unsigned> scores;
+	static vector<unsigned int> scores;
 
-	static unsigned numThreads;
+	static unsigned int numThreads;
 
 	//storage for information to pass to threads
 	static ThreadData* threadDataArray;

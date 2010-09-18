@@ -1,6 +1,6 @@
 #include "Environment.h"
 
-Environment::Environment(unsigned max)
+Environment::Environment(unsigned int max)
 {
 	secret = State("abcd");
 

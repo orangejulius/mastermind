@@ -25,6 +25,7 @@ public:
 	 * @param	g	the combination to set
 	 * @param	colors	the number of colors allowed
 	 */
+
 	State(const char* g);
 
 	/**
