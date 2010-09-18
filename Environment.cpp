@@ -11,6 +11,12 @@ void Environment::setSecret(State newSecret)
 	secret = newSecret;
 }
 
+void Environment::newGame()
+{
+	secret = State();
+	guessesMade = 0;
+}
+
 unsigned Environment::getNumPegs() const
 {
 	return secret.getNumPegs();

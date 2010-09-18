@@ -24,6 +24,11 @@ public:
 	void setSecret(State newSecret);
 
 	/**
+	 * Start a new game, resetting the secret and number of moves made
+	 */
+	void newGame();
+
+	/**
 	* Get the number of pegs in combinations in this environment
 	* @return the number of pegs
 	*/
