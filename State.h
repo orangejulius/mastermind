@@ -70,6 +70,14 @@ public:
 	unsigned int getNumGames() const;
 
 	/**
+	 * Given an integer, return a game state that corresponds to that integer.
+	 * This can be used to get all possible states by iterating from 0 to State::getNumGames()
+	 * @param	int	the number of the game to get
+	 @ @return	the state that corresponds to that number
+	 */
+	State getGameByNumber(unsigned int gameNum) const;
+
+	/**
 	 * Compare two states and return the Mastermind score. Note that Mastermind scores are
 	 * symmetric meaning that the score of A against B and the score of B against A are
 	 * always the same.

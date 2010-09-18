@@ -37,5 +37,8 @@ int main(int argc, char *argv[])
 	cout<<"black: "<<black<<" white: "<<white<<endl;
 
 	cout<<"s1 num games: "<<s1.getNumGames()<<endl;
+	State s1a = s1.getGameByNumber(5);
+	cout<<"s1 game 5: "<<s1a<<endl;
+
 	return 0;
 }

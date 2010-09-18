@@ -60,6 +60,22 @@ unsigned int State::getNumGames() const
 	return pow(numColors, data.size());
 }
 
+/*
+Calculate each peg color from an integer by dividing the integer by
+progressively larger multipeles of the number of colors. This number
+mod the number of colors is the peg color.
+*/
+State State::getGameByNumber(unsigned int gameNum) const
+{
+	unsigned numPegs = getNumPegs();
+	StateData secret(numPegs);
+	for (unsigned i = 0; i < numPegs; i++) {
+		unsigned divisor = pow(numColors,numPegs-1-i);
+		secret[i] = (gameNum / divisor) % numColors;
+	}
+	return State(secret);
+}
+
 bool State::score(const State& s, unsigned int& black, unsigned int& white)
 {
 	if (numColors != s.numColors) {
