@@ -15,12 +15,15 @@ class State
 public:
 	/**
 	 * Create a state without specifying the combination
+	 * @param	pegs	the number of pegs in this state
+	 * @param	colors	the number of possible colors
 	 */
 	State();
 
 	/**
 	 * Create a state with a specific combination of code pegs
-	 * @param g	the combination to set
+	 * @param	g	the combination to set
+	 * @param	colors	the number of colors allowed
 	 */
 	State(const char* g);
 
