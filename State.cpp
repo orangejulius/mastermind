@@ -39,8 +39,16 @@ void State::operator = (const State& s)
 	return true;
 }
 
-void State::score(const State& s, unsigned int& black, unsigned int& white)
+bool State::score(const State& s, unsigned int& black, unsigned int& white)
 {
+	if (numColors != s.numColors) {
+		return false;
+	}
+
+	if (data.size() != s.data.size()) {
+		return false;
+	}
+
 	black = 0;
 	white = 0;
 	for (int i = 0; i < 4; i++) {
@@ -63,4 +71,6 @@ void State::score(const State& s, unsigned int& black, unsigned int& white)
 		white += min(c, g);
 	}
 	white = white - black;
+
+	return true;
 }

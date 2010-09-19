@@ -58,8 +58,9 @@ public:
 	 * @param s	the state to score this state against
 	 * @param black	a reference to the number of black key pegs in the score
 	 * @param white	a reference to the number of white key pegs in the score
+	 * @return	bool	true if the two state can fairly be compared (same number of pegs and colors)
 	 */
-	void score(const State& s, unsigned int& black, unsigned int& white);
+	bool score(const State& s, unsigned int& black, unsigned int& white);
 private:
 	StateData data;
 	unsigned numColors;
