@@ -53,7 +53,7 @@ void State::score(const State& s, int& black, int& white)
 				g++;
 			}
 		}
-		white = white + min(c,g);
+		white += min(c, g);
 	}
 	white = white - black;
 }
