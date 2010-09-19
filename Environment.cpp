@@ -46,7 +46,10 @@ State Environment::getGameByNumber(unsigned int gameNum) const
 {
 	StateData secret(numPegs);
 	for (unsigned int i = 0; i < numPegs; i++) {
-		unsigned int divisor = pow(numColors,numPegs-1-i);
+		unsigned int divisor = 1;
+		for (unsigned j = 0; j < numPegs-1-i; j++) {
+			divisor *= numColors;
+		}
 		secret[i] = (gameNum / divisor) % numColors;
 	}
 	return State(this, secret);
