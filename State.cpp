@@ -21,7 +21,7 @@ ostream& operator << (ostream& out, const State& s)
 	return out;
 }
 
-bool State::operator == (const State& s)
+bool State::operator == (const State& s) const
 {
 	return strncmp(s.array, array, 4) == 0;
 }

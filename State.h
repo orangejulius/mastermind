@@ -36,7 +36,8 @@ public:
 	 * @param s	the state to compare
 	 * @return	true if the two states are equal
 	 */
-	bool operator == (const State& s);
+
+	bool operator == (const State& s) const;
 
 	/**
 	 * Set the current state to another state
