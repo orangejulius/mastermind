@@ -1,5 +1,7 @@
 #include "State.h"
 
+#include <cmath>
+
 using std::min;
 
 State::State(unsigned int pegs, unsigned int colors)
@@ -37,6 +39,25 @@ void State::operator = (const State& s)
 	data = s.data;
 	numColors = s.numColors;
 	return true;
+}
+
+unsigned int State::getNumPegs() const
+{
+	return data.size();
+}
+
+unsigned int State::getNumColors() const
+{
+	return numColors;
+}
+
+/*
+The number of possible games is the c^p, where c is the number of possible colors
+and p is the number of pegs
+*/
+unsigned int State::getNumGames() const
+{
+	return pow(numColors, data.size());
 }
 
 bool State::score(const State& s, unsigned int& black, unsigned int& white)

@@ -52,6 +52,24 @@ public:
 	void operator = (const State& s);
 
 	/**
+	 * Get the number of pegs in this state's secret combination
+	 * @return the number of pegs
+	 */
+	unsigned int getNumPegs() const;
+
+	/**
+	 * Get the number of possible colors in this state's secret combination
+	 * @return the number of possible colors
+	 */
+	unsigned int getNumColors() const;
+
+	/**
+	 * Get the number of games possible with this state's number of pegs and possible colors
+	 * @return the number of possible games
+	 */
+	unsigned int getNumGames() const;
+
+	/**
 	 * Compare two states and return the Mastermind score. Note that Mastermind scores are
 	 * symmetric meaning that the score of A against B and the score of B against A are
 	 * always the same.

@@ -35,5 +35,7 @@ int main(int argc, char *argv[])
 	//expect (0,3)
 	s1.score(s3,black, white);
 	cout<<"black: "<<black<<" white: "<<white<<endl;
+
+	cout<<"s1 num games: "<<s1.getNumGames()<<endl;
 	return 0;
 }
