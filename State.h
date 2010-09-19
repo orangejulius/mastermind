@@ -55,7 +55,7 @@ public:
 	 */
 	void score(const State& s, int& black, int& white);
 private:
-	char array[4];
+	char data[4];
 };
 
 #endif

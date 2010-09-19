@@ -6,29 +6,29 @@ using std::min;
 
 State::State()
 {
-	strncpy(array, "abcd", 4);
+	strncpy(data, "abcd", 4);
 }
 
 State::State(const char* s)
 {
-	strncpy(array,s,4);
+	strncpy(data,s,4);
 }
 
 ostream& operator << (ostream& out, const State& s)
 {
-	out<<(int)s.array[0]<<(int)s.array[1]<<(int)s.array[2]<<(int)s.array[3];
+	out<<(int)s.data[0]<<(int)s.data[1]<<(int)s.data[2]<<(int)s.data[3];
 
 	return out;
 }
 
 bool State::operator == (const State& s) const
 {
-	return strncmp(s.array, array, 4) == 0;
+	return strncmp(s.data, data, 4) == 0;
 }
 
 bool State::operator = (const State& s)
 {
-	strncpy(array, s.array,4);
+	strncpy(data, s.data,4);
 	return true;
 }
 
@@ -37,7 +37,7 @@ void State::score(const State& s, int& black, int& white)
 	black = 0;
 	white = 0;
 	for (int i = 0; i < 4; i++) {
-		if (array[i] == s.array[i]) {
+		if (data[i] == s.data[i]) {
 			black++;
 		}
 	}
@@ -46,10 +46,10 @@ void State::score(const State& s, int& black, int& white)
 		int c = 0;
 		int g = 0;
 		for (int j = 0; j < 4; j++) {
-			if (i == array[j]) {
+			if (i == data[j]) {
 				c++;
 			}
-			if (i == s.array[j]) {
+			if (i == s.data[j]) {
 				g++;
 			}
 		}
