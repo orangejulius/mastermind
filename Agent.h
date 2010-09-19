@@ -3,9 +3,9 @@
 
 #include "Environment.h"
 
-#include <vector>
+#include <list>
 
-using std::vector;
+using std::list;
 
 /**
  * Class Agent represents the AI entitity that is playing Mastermind
@@ -27,7 +27,7 @@ public:
 	bool play(unsigned int& guesses);
 private:
 	Environment* env;
-	vector<State> possibleSolutions;
+	list<State> possibleSolutions;
 };
 
 #endif
