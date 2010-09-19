@@ -76,6 +76,9 @@ private:
 	///the number of colors in any game played in this environment
 	unsigned int numColors;
 
+	///the precomputed number of possible games
+	unsigned int numGames;
+
 	///the secret combination the agent is trying to guess
 	State secret;
 };

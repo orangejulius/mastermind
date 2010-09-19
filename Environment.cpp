@@ -8,6 +8,8 @@ Environment::Environment(unsigned int p_numPegs, unsigned int p_numColors, unsig
 	numColors = p_numColors;
 	maxGuesses = p_maxGuesses;
 
+	numGames = pow(numColors, numPegs);
+
 	guessesMade = 0;
 }
 
@@ -34,7 +36,7 @@ unsigned Environment::getNumColors() const
 
 unsigned int Environment::getNumGames() const
 {
-	return pow(numColors, numPegs);
+	return numGames;
 }
 
 /*
