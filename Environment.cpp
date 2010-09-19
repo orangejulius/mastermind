@@ -1,9 +1,14 @@
 #include "Environment.h"
 
-Environment::Environment(unsigned int max)
+#include <cmath>
+
+Environment::Environment(unsigned int p_numPegs, unsigned int p_numColors, unsigned int p_maxGuesses): secret(State(this))
 {
+	numPegs = p_numPegs;
+	numColors = p_numColors;
+	maxGuesses = p_maxGuesses;
+
 	guessesMade = 0;
-	maxGuesses = max;
 }
 
 void Environment::setSecret(State newSecret)
@@ -13,28 +18,38 @@ void Environment::setSecret(State newSecret)
 
 void Environment::newGame()
 {
-	secret = State();
+	secret = State(this);
 	guessesMade = 0;
 }
 
 unsigned Environment::getNumPegs() const
 {
-	return secret.getNumPegs();
+	return numPegs;
 }
 
 unsigned Environment::getNumColors() const
 {
-	return secret.getNumColors();
+	return numColors;
 }
 
 unsigned int Environment::getNumGames() const
 {
-	return secret.getNumGames();
+	return pow(numColors, numPegs);
 }
 
+/*
+Calculate each peg color from an integer by dividing the integer by
+progressively larger multipeles of the number of colors. This number
+mod the number of colors is the peg color.
+*/
 State Environment::getGameByNumber(unsigned int gameNum) const
 {
-	return secret.getGameByNumber(gameNum);
+	StateData secret(numPegs);
+	for (unsigned int i = 0; i < numPegs; i++) {
+		unsigned int divisor = pow(numColors,numPegs-1-i);
+		secret[i] = (gameNum / divisor) % numColors;
+	}
+	return State(this, secret);
 }
 
 bool Environment::guess(State guess, unsigned int& black, unsigned int& white)

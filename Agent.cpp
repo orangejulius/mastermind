@@ -17,7 +17,7 @@ bool Agent::play(unsigned int& guesses)
 {
 	guesses = 0;
 	unsigned int black, white;
-	State guess;
+	State guess(env);
 
 	while (1) {
 		guesses++;

@@ -15,7 +15,7 @@ public:
 	 * Initialize the environment
 	 * @param max	the maximum number of guesses the codebreaker can make before losing
 	 */
-	Environment(unsigned int max=10);
+	Environment(unsigned int p_numPegs = 4, unsigned int p_numColors = 6, unsigned int p_maxGuesses = 10);
 
 	/**
 	 * Set the secret combination that the codebreaker is trying to guess
@@ -46,6 +46,12 @@ public:
 	*/
 	unsigned int getNumGames() const;
 
+	/**
+	* Given an integer, return a game state that corresponds to that integer.
+	* This can be used to get all possible states by iterating from 0 to Environment::getNumGames()
+	* @param	int	the number of the game to get
+	@ @return	the state that corresponds to that number
+	*/
 	State getGameByNumber(unsigned int gameNum) const;
 
 	/**
@@ -63,6 +69,14 @@ private:
 
 	///the maximum number of guesses the agent is allowed to make
 	unsigned int maxGuesses;
+
+	///the number of pegs in any game played in this environment
+	unsigned int numPegs;
+
+	///the number of colors in any game played in this environment
+	unsigned int numColors;
+
+	///the secret combination the agent is trying to guess
 	State secret;
 };
 

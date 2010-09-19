@@ -9,6 +9,8 @@ using std::vector;
 
 typedef vector<unsigned char> StateData;
 
+class Environment;
+
 /**
  * Class State stores one combination of code pegs for Mastermind. It could be the codemaker's
  * secret combination, a guess made by the codebreaker, or just a temporary representation
@@ -19,17 +21,16 @@ class State
 public:
 	/**
 	 * Create a state without specifying the combination
-	 * @param	pegs	the number of pegs in this state
-	 * @param	colors	the number of possible colors
+	 * @param	e	a pointer to the environment in which this state is valid
 	 */
-	State(unsigned int pegs = 4, unsigned int colors = 6);
+	State(const Environment* e);
 
 	/**
 	 * Create a state with a specific combination of code pegs
-	 * @param	g	the combination to set
-	 * @param	colors	the number of colors allowed
+	 * @param	e	a pointer to the environment in which this state is valid
+	 * @param	s	the combination to set
 	 */
-	State(const StateData s, unsigned int colors = 6);
+	State(const Environment* e, const StateData s);
 
 	/**
 	 * Outputs the current combination to an output buffer
@@ -52,32 +53,6 @@ public:
 	void operator = (const State& s);
 
 	/**
-	 * Get the number of pegs in this state's secret combination
-	 * @return the number of pegs
-	 */
-	unsigned int getNumPegs() const;
-
-	/**
-	 * Get the number of possible colors in this state's secret combination
-	 * @return the number of possible colors
-	 */
-	unsigned int getNumColors() const;
-
-	/**
-	 * Get the number of games possible with this state's number of pegs and possible colors
-	 * @return the number of possible games
-	 */
-	unsigned int getNumGames() const;
-
-	/**
-	 * Given an integer, return a game state that corresponds to that integer.
-	 * This can be used to get all possible states by iterating from 0 to State::getNumGames()
-	 * @param	int	the number of the game to get
-	 @ @return	the state that corresponds to that number
-	 */
-	State getGameByNumber(unsigned int gameNum) const;
-
-	/**
 	 * Compare two states and return the Mastermind score. Note that Mastermind scores are
 	 * symmetric meaning that the score of A against B and the score of B against A are
 	 * always the same.
@@ -89,7 +64,7 @@ public:
 	bool score(const State& s, unsigned int& black, unsigned int& white);
 private:
 	StateData data;
-	unsigned numColors;
+	const Environment* env;
 };
 
 #endif

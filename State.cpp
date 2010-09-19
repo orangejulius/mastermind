@@ -1,19 +1,18 @@
 #include "State.h"
 
-#include <cmath>
+#include "Environment.h"
 
 using std::min;
 
-State::State(unsigned int pegs, unsigned int colors)
+State::State(const Environment* e)
 {
-	data = StateData(pegs);
-	numColors = colors;
+	env = e;
 }
 
-State::State(const StateData s, unsigned int colors)
+State::State(const Environment* e, const StateData s)
 {
+	env = e;
 	data = s;
-	numColors = colors;
 }
 
 ostream& operator << (ostream& out, const State& s)
@@ -27,7 +26,7 @@ ostream& operator << (ostream& out, const State& s)
 
 bool State::operator == (const State& s) const
 {
-	if (numColors == s.numColors) {
+	if (env == s.env) {
 		return data == s.data;
 	} else {
 		return false;
@@ -36,59 +35,20 @@ bool State::operator == (const State& s) const
 
 void State::operator = (const State& s)
 {
+	env = s.env;
 	data = s.data;
-	numColors = s.numColors;
-	return true;
-}
-
-unsigned int State::getNumPegs() const
-{
-	return data.size();
-}
-
-unsigned int State::getNumColors() const
-{
-	return numColors;
-}
-
-/*
-The number of possible games is the c^p, where c is the number of possible colors
-and p is the number of pegs
-*/
-unsigned int State::getNumGames() const
-{
-	return pow(numColors, data.size());
-}
-
-/*
-Calculate each peg color from an integer by dividing the integer by
-progressively larger multipeles of the number of colors. This number
-mod the number of colors is the peg color.
-*/
-State State::getGameByNumber(unsigned int gameNum) const
-{
-	unsigned numPegs = getNumPegs();
-	StateData secret(numPegs);
-	for (unsigned i = 0; i < numPegs; i++) {
-		unsigned divisor = pow(numColors,numPegs-1-i);
-		secret[i] = (gameNum / divisor) % numColors;
-	}
-	return State(secret);
 }
 
 bool State::score(const State& s, unsigned int& black, unsigned int& white)
 {
-	if (numColors != s.numColors) {
-		return false;
-	}
-
-	if (data.size() != s.data.size()) {
+	if (env != s.env) {
 		return false;
 	}
 
 	black = 0;
 	white = 0;
-	unsigned int numPegs = getNumPegs();
+	unsigned int numPegs = env->getNumPegs();
+	unsigned int numColors = env->getNumColors();
 	for (unsigned int i = 0; i < numPegs; i++) {
 		if (data[i] == s.data[i]) {
 			black++;
