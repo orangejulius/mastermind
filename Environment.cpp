@@ -13,32 +13,6 @@ Environment::Environment(unsigned int p_numPegs, unsigned int p_numColors, unsig
 	guessesMade = 0;
 }
 
-void Environment::setSecret(State newSecret)
-{
-	secret = newSecret;
-}
-
-void Environment::newGame()
-{
-	secret = State(this);
-	guessesMade = 0;
-}
-
-unsigned Environment::getNumPegs() const
-{
-	return numPegs;
-}
-
-unsigned Environment::getNumColors() const
-{
-	return numColors;
-}
-
-unsigned int Environment::getNumGames() const
-{
-	return numGames;
-}
-
 /*
 Calculate each peg color from an integer by dividing the integer by
 progressively larger multipeles of the number of colors. This number

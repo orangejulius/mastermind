@@ -21,30 +21,41 @@ public:
 	 * Set the secret combination that the codebreaker is trying to guess
 	 * @param newSecret	the new secret combination
 	 */
-	void setSecret(State newSecret);
+	void setSecret(State newSecret) {
+		secret = newSecret;
+	}
 
 	/**
-	 * Start a new game, resetting the secret and number of moves made
-	 */
-	void newGame();
+	* Start a new game, resetting the secret and number of moves made
+	*/
+	void newGame() {
+		secret = State(this);
+		guessesMade = 0;
+	}
 
 	/**
 	* Get the number of pegs in combinations in this environment
 	* @return the number of pegs
 	*/
-	unsigned int getNumPegs() const;
+	inline unsigned int getNumPegs() const {
+		return numPegs;
+	}
 
 	/**
 	* Get the number of possible colors for combinations in this environment
 	* @return the number of possible colors
 	*/
-	unsigned int getNumColors() const;
+	inline unsigned int getNumColors() const {
+		return numColors;
+	}
 
 	/**
 	* Get the number of games possible in this environment
 	* @return the number of possible games
 	*/
-	unsigned int getNumGames() const;
+	inline unsigned int getNumGames() const {
+		return numGames;
+	}
 
 	/**
 	* Given an integer, return a game state that corresponds to that integer.
