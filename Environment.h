@@ -33,8 +33,11 @@ public:
 	 */
 	bool guess(State g, int& black, int& white);
 private:
-	int guesses;
-	int maxguesses;
+	///the number of guesses the agent has made so far
+	unsigned int guessesMade;
+
+	///the maximum number of guesses the agent is allowed to make
+	unsigned int maxGuesses;
 	State secret;
 };
 

@@ -3,8 +3,9 @@
 Environment::Environment(unsigned max)
 {
 	secret = State("abcd");
-	guesses = 0;
-	maxguesses = max;
+
+	guessesMade = 0;
+	maxGuesses = max;
 }
 
 void Environment::setSecret(State newSecret)
@@ -14,8 +15,8 @@ void Environment::setSecret(State newSecret)
 
 bool Environment::guess(State guess, int& black, int& white)
 {
-	if (guesses < maxguesses) {
-		guesses++;
+	if (guessesMade < maxGuesses) {
+		guessesMade++;
 		secret.score(guess, black, white);
 		return true;
 	} else {
