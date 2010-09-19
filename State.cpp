@@ -26,7 +26,7 @@ bool State::operator == (const State& s) const
 	return strncmp(s.data, data, 4) == 0;
 }
 
-bool State::operator = (const State& s)
+void State::operator = (const State& s)
 {
 	strncpy(data, s.data,4);
 	return true;

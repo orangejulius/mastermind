@@ -43,7 +43,7 @@ public:
 	 * Set the current state to another state
 	 * @param s	the new state
 	 */
-	bool operator = (const State& s);
+	void operator = (const State& s);
 
 	/**
 	 * Compare two states and return the Mastermind score. Note that Mastermind scores are
