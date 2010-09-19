@@ -22,8 +22,17 @@ bool Agent::play(unsigned int& guesses)
 	while (1) {
 		guesses++;
 		//make a guess
-		//simply take the first guess that is still consistent with the known information
-		guess = possibleSolutions.front();
+		if (guesses == 1) {
+			//the optimal first guess is 0101 for a 4 peg game. Extrapolate this alternating pattern
+			StateData* guess1 = new StateData[env->getNumPegs()];
+			for (unsigned int i = 0; i < env->getNumPegs(); i++) {
+				guess1[i] = i % 2;
+			}
+			guess = State(env,guess1);
+		} else {
+			//for now, just pick the first remaining possible solution after the 1st guess
+			guess = possibleSolutions.front();
+		}
 
 		//ask the environment to score the guess
 		//false return value means no more guesses are allowed
