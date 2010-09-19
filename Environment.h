@@ -31,7 +31,7 @@ public:
 	 * @param white	a reference to the number of white key pegs in the score
 	 * @return bool	true if the codebreaker has not reached the maximum number of guesses
 	 */
-	bool guess(State g, int& black, int& white);
+	bool guess(State g, unsigned int& black, unsigned int& white);
 private:
 	///the number of guesses the agent has made so far
 	unsigned int guessesMade;

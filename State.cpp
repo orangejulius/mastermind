@@ -32,7 +32,7 @@ void State::operator = (const State& s)
 	return true;
 }
 
-void State::score(const State& s, int& black, int& white)
+void State::score(const State& s, unsigned int& black, unsigned int& white)
 {
 	black = 0;
 	white = 0;

@@ -57,7 +57,7 @@ public:
 	 * @param black	a reference to the number of black key pegs in the score
 	 * @param white	a reference to the number of white key pegs in the score
 	 */
-	void score(const State& s, int& black, int& white);
+	void score(const State& s, unsigned int& black, unsigned int& white);
 private:
 	char data[4];
 };

@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 	State s1("abcd");
 	State s2("abcd");
 	State s3("bcde");
-	int black = -1;
-	int white = -1;
+	unsigned int black = -1;
+	unsigned int white = -1;
 
 	//expect (4,0)
 	s1.score(s1,black, white);

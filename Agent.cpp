@@ -21,8 +21,9 @@ Agent::Agent(Environment* e)
 bool Agent::play(unsigned int& guesses)
 {
 	guesses = 0;
-	int black, white;
+	unsigned int black, white;
 	State guess;
+
 	while (1) {
 		guesses++;
 		//make a guess
@@ -38,7 +39,7 @@ bool Agent::play(unsigned int& guesses)
 		if (black == 4) {
 			return true;
 		}
-		int black2, white2;
+		unsigned int black2, white2;
 		//iterate through all possible solutions
 		//since Mastermind guess scores are symmetric, only combinations that score the same
 		//against the current guess as the current guess does against the solution are

@@ -13,7 +13,7 @@ void Environment::setSecret(State newSecret)
 	secret = newSecret;
 }
 
-bool Environment::guess(State guess, int& black, int& white)
+bool Environment::guess(State guess, unsigned int& black, unsigned int& white)
 {
 	if (guessesMade < maxGuesses) {
 		guessesMade++;
