@@ -63,18 +63,14 @@ void Controller::playAllGames()
 
 void* Controller::playGamesThread(ThreadData& threadData)
 {
+	Environment e = Environment();
+
 	//play through all the games assigned to this thread
-	for (int i = threadData.threadId; i < 6*6*6*6; i += numThreads) {
+	for (unsigned int i = threadData.threadId; i < e.getNumGames(); i += numThreads) {
 		//initialize the state for this game
 		unsigned int guesses = 0;
-		Environment e = Environment(50);
 		Agent a = Agent(&e);
-		StateData secret(4);
-		secret[0] = (i/(6*6*6))%6;
-		secret[1] = (i/(6*6))%6;
-		secret[2] = (i/(6))%6;
-		secret[3] = i%6;
-		State s(secret);
+		State s = e.getGameByNumber(i);
 		e.setSecret(s);
 
 		//play this game
@@ -87,6 +83,7 @@ void* Controller::playGamesThread(ThreadData& threadData)
 		}
 		scores[guesses-1]++;
 		scoresMutex.unlock();
+		e.newGame();
 	}
 	return 0;
 }

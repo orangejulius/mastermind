@@ -7,13 +7,8 @@ Agent::Agent(Environment* e)
 	env = e;
 
 	//initially all games are possible
-	for (int i = 0; i < 6*6*6*6; i++) {
-		StateData secret(4);
-		secret[0] = (i/(6*6*6))%6;
-		secret[1] = (i/(6*6))%6;
-		secret[2] = (i/(6))%6;
-		secret[3] = i%6;
-		State s(secret);
+	for (unsigned int i = 0; i < env->getNumGames(); i++) {
+		State s = env->getGameByNumber(i);
 		possibleSolutions.push_back(s);
 	}
 }
@@ -36,7 +31,7 @@ bool Agent::play(unsigned int& guesses)
 			return false;
 		}
 		//4 black pins means victory
-		if (black == 4) {
+		if (black == env->getNumPegs()) {
 			return true;
 		}
 		unsigned int black2, white2;

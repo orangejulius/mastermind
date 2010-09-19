@@ -88,16 +88,17 @@ bool State::score(const State& s, unsigned int& black, unsigned int& white)
 
 	black = 0;
 	white = 0;
-	for (int i = 0; i < 4; i++) {
+	unsigned int numPegs = getNumPegs();
+	for (unsigned int i = 0; i < numPegs; i++) {
 		if (data[i] == s.data[i]) {
 			black++;
 		}
 	}
 
-	for (int i = 0; i < 6; i++) {
+	for (unsigned int i = 0; i < numColors; i++) {
 		int c = 0;
 		int g = 0;
-		for (int j = 0; j < 4; j++) {
+		for (unsigned int j = 0; j < numPegs; j++) {
 			if (i == data[j]) {
 				c++;
 			}
