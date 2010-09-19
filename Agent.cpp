@@ -7,8 +7,8 @@ Agent::Agent(Environment* e)
 	env = e;
 
 	//initially all games are possible
-	for (int i = 0; i < 6*6*6*6;i ++) {
-		char secret[4];
+	for (int i = 0; i < 6*6*6*6; i++) {
+		StateData secret(4);
 		secret[0] = (i/(6*6*6))%6;
 		secret[1] = (i/(6*6))%6;
 		secret[2] = (i/(6))%6;

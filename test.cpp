@@ -9,9 +9,18 @@ using std::endl;
 
 int main(int argc, char *argv[])
 {
-	State s1("abcd");
-	State s2("abcd");
-	State s3("bcde");
+	unsigned char d1[4] = {0,1,2,3};
+	StateData sd1(&d1[0], &d1[4]);
+	State s1(sd1);
+
+	unsigned char d2[4] = {0,1,2,3};
+	StateData sd2(&d2[0], &d2[4]);
+	State s2(sd2);
+
+	unsigned char d3[4] = {1,2,3,4};
+	StateData sd3(&d3[0], &d3[4]);
+	State s3(sd3);
+
 	unsigned int black = -1;
 	unsigned int white = -1;
 

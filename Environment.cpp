@@ -2,8 +2,6 @@
 
 Environment::Environment(unsigned int max)
 {
-	secret = State("abcd");
-
 	guessesMade = 0;
 	maxGuesses = max;
 }

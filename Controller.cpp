@@ -69,7 +69,7 @@ void* Controller::playGamesThread(ThreadData& threadData)
 		unsigned int guesses = 0;
 		Environment e = Environment(50);
 		Agent a = Agent(&e);
-		char secret[4];
+		StateData secret(4);
 		secret[0] = (i/(6*6*6))%6;
 		secret[1] = (i/(6*6))%6;
 		secret[2] = (i/(6))%6;

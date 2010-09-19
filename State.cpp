@@ -1,34 +1,41 @@
 #include "State.h"
 
-#include <cstring>
-
 using std::min;
 
-State::State()
+State::State(unsigned int pegs, unsigned int colors)
 {
-	strncpy(data, "abcd", 4);
+	data = StateData(pegs);
+	numColors = colors;
 }
 
-State::State(const char* s)
+State::State(const StateData s, unsigned int colors)
 {
-	strncpy(data,s,4);
+	data = s;
+	numColors = colors;
 }
 
 ostream& operator << (ostream& out, const State& s)
 {
-	out<<(int)s.data[0]<<(int)s.data[1]<<(int)s.data[2]<<(int)s.data[3];
+	for (unsigned i = 0; i < s.data.size(); i++) {
+		out<<(int)s.data[i];
+	}
 
 	return out;
 }
 
 bool State::operator == (const State& s) const
 {
-	return strncmp(s.data, data, 4) == 0;
+	if (numColors == s.numColors) {
+		return data == s.data;
+	} else {
+		return false;
+	}
 }
 
 void State::operator = (const State& s)
 {
-	strncpy(data, s.data,4);
+	data = s.data;
+	numColors = s.numColors;
 	return true;
 }
 
