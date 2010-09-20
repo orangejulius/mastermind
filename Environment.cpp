@@ -20,7 +20,7 @@ mod the number of colors is the peg color.
 */
 State Environment::getGameByNumber(unsigned int gameNum) const
 {
-	StateData secret(numPegs);
+	StateData* secret = new StateData[numPegs];
 	for (unsigned int i = 0; i < numPegs; i++) {
 		unsigned int divisor = 1;
 		for (unsigned j = 0; j < numPegs-1-i; j++) {

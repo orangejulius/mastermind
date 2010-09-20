@@ -10,16 +10,25 @@ using std::endl;
 int main(int argc, char *argv[])
 {
 	Environment e1(4,6,10);
-	unsigned char d1[4] = {0,1,2,3};
-	StateData sd1(&d1[0], &d1[4]);
+	StateData* sd1 = new unsigned char[4];
+	sd1[0] = 0;
+	sd1[1] = 1;
+	sd1[2] = 2;
+	sd1[3] = 3;
 	State s1(&e1, sd1);
 
-	unsigned char d2[4] = {0,1,2,3};
-	StateData sd2(&d2[0], &d2[4]);
+	StateData* sd2 = new unsigned char[4];
+	sd2[0] = 0;
+	sd2[1] = 1;
+	sd2[2] = 2;
+	sd2[3] = 3;
 	State s2(&e1, sd2);
 
-	unsigned char d3[4] = {1,2,3,4};
-	StateData sd3(&d3[0], &d3[4]);
+	StateData* sd3 = new unsigned char[4];
+	sd3[0] = 1;
+	sd3[1] = 2;
+	sd3[2] = 3;
+	sd3[3] = 4;
 	State s3(&e1, sd3);
 
 	unsigned int black = -1;

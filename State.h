@@ -2,12 +2,10 @@
 #define STATE_H
 
 #include <iostream>
-#include <vector>
 
 using std::ostream;
-using std::vector;
 
-typedef vector<unsigned char> StateData;
+typedef unsigned char StateData;
 
 class Environment;
 
@@ -30,7 +28,7 @@ public:
 	 * @param	e	a pointer to the environment in which this state is valid
 	 * @param	s	the combination to set
 	 */
-	State(const Environment* e, const StateData s);
+	State(const Environment* e, StateData* s);
 
 	/**
 	 * Outputs the current combination to an output buffer
@@ -63,7 +61,7 @@ public:
 	 */
 	bool score(const State& s, unsigned int& black, unsigned int& white);
 private:
-	StateData data;
+	StateData* data;
 	const Environment* env;
 };
 

@@ -6,10 +6,11 @@ using std::min;
 
 State::State(const Environment* e)
 {
+	data = 0;
 	env = e;
 }
 
-State::State(const Environment* e, const StateData s)
+State::State(const Environment* e, StateData* s)
 {
 	env = e;
 	data = s;
@@ -17,7 +18,7 @@ State::State(const Environment* e, const StateData s)
 
 ostream& operator << (ostream& out, const State& s)
 {
-	for (unsigned i = 0; i < s.data.size(); i++) {
+	for (unsigned i = 0; i < s.env->getNumPegs(); i++) {
 		out<<(int)s.data[i];
 	}
 
@@ -27,7 +28,12 @@ ostream& operator << (ostream& out, const State& s)
 bool State::operator == (const State& s) const
 {
 	if (env == s.env) {
-		return data == s.data;
+		for (unsigned int i = 0; i < env->getNumGames(); i++) {
+			if (data[i] != s.data[i]) {
+				return false;
+			}
+		}
+		return true;
 	} else {
 		return false;
 	}
