@@ -13,3 +13,15 @@ using -ggdb -O2 in a 4 peg, 6 color game:
 15M in Environment::getNumGames (called 1.6M times)
 5M in Environment::getNumPegs (called 2.6M times)
 5M in Environment::getNumColors (called 2.6M times)
+
+execution times
+
+dual core:
+real    0m6.824s
+user    0m11.436s
+sys     0m0.012s
+
+quad core:
+real    0m3.613s
+user    0m14.059s
+sys     0m0.042s
