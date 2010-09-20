@@ -4,7 +4,8 @@ Most terminology is consistent with the Wikipedia article[1] on Mastermind
 
 Current features:
 * displays statistics for distribution of games solved vs number of guesses taken
-* solves all games of standard 4 peg, 6 color Mastermind in an average of ~4.2 moves
+* solves all games of standard 4 peg, 6 color Mastermind in an average of 5.7 moves
+* variable number of pegs or colors
 * uses multiple threads for computation
 * automatic detection of number of threads to run
 
@@ -13,7 +14,6 @@ Requirements:
 * cmake 2.8
 
 Planned features include
-* variable number of pegs or colors
 * interactive mode vs computer as codebreaker and codemaker
 * additional codebreaker algorithms
 
