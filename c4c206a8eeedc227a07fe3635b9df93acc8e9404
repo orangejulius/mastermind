@@ -1,0 +1,33 @@
+replaced a vector with a list in class Agent due to numerous erase() calls. Massive performance speedup.
+
+using -ggdb -O2 in a 4 peg, 6 color game:
+
+cachegrind results
+
+5.4B instructions
+Function		Instructions	Times Called
+State::score		1.3B		2.6M
+_ieee754_pow		823M		8.4M
+_int_malloc		421M		8.4M
+malloc			420M		8.4M
+_int_free		395M		8.4M
+Environment::getGameByNumber	233M	1.6M
+operator new		126M		8M
+Agent::Agent		78M		1296
+std::vector=		62M		1.6M
+Agent::play		51M		1296
+State::State		20M		1.6M
+Environment::getNumGames	15M	1.6M
+std::_List_node_base:hook	11M	1.6M
+
+execution times
+
+dual core:
+real    0m0.723s
+user    0m1.355s
+sys     0m0.004s
+
+quad core:
+real    0m0.960s
+user    0m3.171s
+sys     0m0.532s
