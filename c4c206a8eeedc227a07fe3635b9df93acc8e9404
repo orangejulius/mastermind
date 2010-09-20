@@ -1,0 +1,15 @@
+Starting point of some optimizations.
+
+using -ggdb -O2 in a 4 peg, 6 color game:
+
+81.5B instructions
+41B in memmove (called 844M times)
+26B in vector= (called 838M times)
+2B in State=   (called 837M times)
+1.3B in State::score (called 2.6M times)
+305M in free (called 9.4M times)
+233M in Environment::getGameByNumber (called 1.6M times)
+
+15M in Environment::getNumGames (called 1.6M times)
+5M in Environment::getNumPegs (called 2.6M times)
+5M in Environment::getNumColors (called 2.6M times)
