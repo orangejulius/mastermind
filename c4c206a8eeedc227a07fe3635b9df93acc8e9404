@@ -26,8 +26,10 @@ dual core:
 real    0m0.723s
 user    0m1.355s
 sys     0m0.004s
+9.7x speedup
 
 quad core:
 real    0m0.960s
 user    0m3.171s
 sys     0m0.532s
+4.0x speedup
