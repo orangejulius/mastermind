@@ -2,18 +2,30 @@
 
 #include "Environment.h"
 
+#include <cstdio>
+
 using std::min;
 
 State::State(const Environment* e)
 {
 	data = 0;
 	env = e;
+
+	if (env) {
+		unsigned int numColors = env->getNumColors();
+		colorFrequency = new unsigned char[numColors];
+	}
 }
 
 State::State(const Environment* e, StateData* s)
 {
 	env = e;
 	data = s;
+
+	if (env) {
+		unsigned int numColors = env->getNumColors();
+		colorFrequency = new unsigned char[numColors];
+	}
 }
 
 ostream& operator << (ostream& out, const State& s)
@@ -53,28 +65,29 @@ bool State::score(const State& s, unsigned int& black, unsigned int& white)
 
 	black = 0;
 	white = 0;
+
 	unsigned int numPegs = env->getNumPegs();
 	unsigned int numColors = env->getNumColors();
+
+	for (unsigned int i = 0; i < numColors; i++) {
+		colorFrequency[i] = 0;
+	}
+
 	for (unsigned int i = 0; i < numPegs; i++) {
 		if (data[i] == s.data[i]) {
 			black++;
 		}
+		colorFrequency[data[i]]++;
 	}
 
-	for (unsigned int i = 0; i < numColors; i++) {
-		int c = 0;
-		int g = 0;
-		for (unsigned int j = 0; j < numPegs; j++) {
-			if (i == data[j]) {
-				c++;
-			}
-			if (i == s.data[j]) {
-				g++;
-			}
+	for (unsigned int i = 0; i < numPegs; i++) {
+		if ( colorFrequency[s.data[i]] > 0 ){
+			colorFrequency[s.data[i]]--;
+			white++;
 		}
-		white += min(c, g);
 	}
-	white = white - black;
+
+	white -= black;
 
 	return true;
 }

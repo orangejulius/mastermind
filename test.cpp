@@ -31,6 +31,13 @@ int main(int argc, char *argv[])
 	sd3[3] = 4;
 	State s3(&e1, sd3);
 
+
+	StateData* sd4 = new unsigned char[4];
+	sd4[0] = 2;
+	sd4[1] = 6;
+	sd4[2] = 3;
+	sd4[3] = 4;
+	State s4(&e1, sd4);
 	unsigned int black = -1;
 	unsigned int white = -1;
 
@@ -44,6 +51,10 @@ int main(int argc, char *argv[])
 
 	//expect (0,3)
 	s1.score(s3,black, white);
+	cout<<"black: "<<black<<" white: "<<white<<endl;
+
+	//expect (2,1)
+	s3.score(s4,black, white);
 	cout<<"black: "<<black<<" white: "<<white<<endl;
 
 	cout<<"s1 num games: "<<e1.getNumGames()<<endl;

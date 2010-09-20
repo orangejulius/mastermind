@@ -2,12 +2,9 @@
 
 #include <cmath>
 
-Environment::Environment(unsigned int p_numPegs, unsigned int p_numColors, unsigned int p_maxGuesses): secret(State(this))
+Environment::Environment(unsigned int p_numPegs, unsigned int p_numColors, unsigned int p_maxGuesses)
+: maxGuesses(p_maxGuesses), numPegs(p_numPegs), numColors(p_numColors),  secret(State(this))
 {
-	numPegs = p_numPegs;
-	numColors = p_numColors;
-	maxGuesses = p_maxGuesses;
-
 	numGames = pow(numColors, numPegs);
 
 	guessesMade = 0;

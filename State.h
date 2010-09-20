@@ -63,6 +63,7 @@ public:
 private:
 	StateData* data;
 	const Environment* env;
+	unsigned char* colorFrequency;
 };
 
 #endif
