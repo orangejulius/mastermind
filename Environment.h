@@ -66,6 +66,18 @@ public:
 	State getGameByNumber(unsigned int gameNum) const;
 
 	/**
+	* Compare two states and return the Mastermind score. Note that Mastermind scores are
+	* symmetric meaning that the score of A against B and the score of B against A are
+	* always the same.
+	* @param a	the first state to compare
+	* @param a	the second state to compare
+	* @param black	a reference to the number of black key pegs in the score
+	* @param white	a reference to the number of white key pegs in the score
+	* @return	bool	true if the two state can fairly be compared (same number of pegs and colors)
+	*/
+	void score(const State& a, const State& b, unsigned int& black, unsigned int& white);
+
+	/**
 	 * Record a guess made by the codebreaker and return the score of the guess against the
 	 * secret code
 	 * @param g	the guess made the codebreaker
@@ -92,6 +104,9 @@ private:
 
 	///the secret combination the agent is trying to guess
 	State secret;
+
+	///a temporary place to store data during scores
+	unsigned char* colorFrequency;
 };
 
 #endif

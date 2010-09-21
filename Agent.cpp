@@ -50,7 +50,7 @@ bool Agent::play(unsigned int& guesses)
 		//possible solutions
 		list<State>::iterator i = possibleSolutions.begin();
 		while (i != possibleSolutions.end()) {
-			i->score(guess, black2, white2);
+			env->score(*i, guess, black2, white2);
 			//remove the current combination from the list of possible solutions or move to the next combination
 			if (black2 != black || white2 != white) {
 				i = possibleSolutions.erase(i);

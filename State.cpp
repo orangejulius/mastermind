@@ -56,38 +56,3 @@ void State::operator = (const State& s)
 	env = s.env;
 	data = s.data;
 }
-
-bool State::score(const State& s, unsigned int& black, unsigned int& white)
-{
-	if (env != s.env) {
-		return false;
-	}
-
-	black = 0;
-	white = 0;
-
-	unsigned int numPegs = env->getNumPegs();
-	unsigned int numColors = env->getNumColors();
-
-	for (unsigned int i = 0; i < numColors; i++) {
-		colorFrequency[i] = 0;
-	}
-
-	for (unsigned int i = 0; i < numPegs; i++) {
-		if (data[i] == s.data[i]) {
-			black++;
-		}
-		colorFrequency[data[i]]++;
-	}
-
-	for (unsigned int i = 0; i < numPegs; i++) {
-		if ( colorFrequency[s.data[i]] > 0 ){
-			colorFrequency[s.data[i]]--;
-			white++;
-		}
-	}
-
-	white -= black;
-
-	return true;
-}

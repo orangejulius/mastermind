@@ -50,16 +50,8 @@ public:
 	 */
 	void operator = (const State& s);
 
-	/**
-	 * Compare two states and return the Mastermind score. Note that Mastermind scores are
-	 * symmetric meaning that the score of A against B and the score of B against A are
-	 * always the same.
-	 * @param s	the state to score this state against
-	 * @param black	a reference to the number of black key pegs in the score
-	 * @param white	a reference to the number of white key pegs in the score
-	 * @return	bool	true if the two state can fairly be compared (same number of pegs and colors)
-	 */
-	bool score(const State& s, unsigned int& black, unsigned int& white);
+	friend class Environment;
+
 private:
 	StateData* data;
 	const Environment* env;

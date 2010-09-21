@@ -45,19 +45,19 @@ int main(int argc, char *argv[])
 	unsigned int white = -1;
 
 	//expect (4,0)
-	s1.score(s1,black, white);
+	e1.score(s1,s1, black, white);
 	cout<<"black: "<<black<<" white: "<<white<<endl;
 
 	//expect(4,0)
-	s1.score(s2,black, white);
+	e1.score(s1, s2, black, white);
 	cout<<"black: "<<black<<" white: "<<white<<endl;
 
 	//expect (0,3)
-	s1.score(s3,black, white);
+	e1.score(s1, s3, black, white);
 	cout<<"black: "<<black<<" white: "<<white<<endl;
 
 	//expect (2,1)
-	s3.score(s4,black, white);
+	e1.score(s3, s4, black, white);
 	cout<<"black: "<<black<<" white: "<<white<<endl;
 
 	cout<<"s1 num games: "<<e1.getNumGames()<<endl;
