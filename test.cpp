@@ -3,6 +3,9 @@
 #endif
 
 #include "Controller.h"
+#include <list>
+
+using std::list;
 
 using std::cout;
 using std::endl;
@@ -60,6 +63,20 @@ int main(int argc, char *argv[])
 	cout<<"s1 num games: "<<e1.getNumGames()<<endl;
 	State s1a = e1.getGameByNumber(5);
 	cout<<"s1 game 5: "<<s1a<<endl;
+
+	State s5=s4;
+
+	State s6(&e1);
+
+	s6 = s5;
+
+	list<State> l;
+	l.push_back(s6);
+	l.push_back(s1);
+	std::list<State>::iterator i = l.begin();
+	cout<<"i address: "<<&(*i)<<endl;
+	l.push_back(s2);
+	l.erase(i);
 
 	return 0;
 }
