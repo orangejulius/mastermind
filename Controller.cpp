@@ -31,6 +31,8 @@ bool Controller::run()
 	threadDataArray = new ThreadData[numThreads];
 
 	playAllGames();
+
+	delete[] threadDataArray;
 	return true;
 }
 
@@ -70,8 +72,7 @@ void* Controller::playGamesThread(ThreadData& threadData)
 		//initialize the state for this game
 		unsigned int guesses = 0;
 		Agent a = Agent(&e);
-		State s = e.getGameByNumber(i);
-		e.setSecret(s);
+		e.setSecret(i);
 
 		//play this game
 		a.play(guesses);

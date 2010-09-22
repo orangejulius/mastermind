@@ -8,8 +8,7 @@ Agent::Agent(Environment* e)
 
 	//initially all games are possible
 	for (unsigned int i = 0; i < env->getNumGames(); i++) {
-		State s = env->getGameByNumber(i);
-		possibleSolutions.push_back(s);
+		possibleSolutions.push_back(&env->getAllGames()[i]);
 	}
 }
 
@@ -31,7 +30,7 @@ bool Agent::play(unsigned int& guesses)
 			guess = State(guess1,env->getNumPegs());
 		} else {
 			//for now, just pick the first remaining possible solution after the 1st guess
-			guess = possibleSolutions.front();
+			guess = *possibleSolutions.front();
 		}
 
 		//ask the environment to score the guess
@@ -48,9 +47,9 @@ bool Agent::play(unsigned int& guesses)
 		//since Mastermind guess scores are symmetric, only combinations that score the same
 		//against the current guess as the current guess does against the solution are
 		//possible solutions
-		list<State>::iterator i = possibleSolutions.begin();
+		list<const State*>::iterator i = possibleSolutions.begin();
 		while (i != possibleSolutions.end()) {
-			env->score(*i, guess, black2, white2);
+			env->score(**i, guess, black2, white2);
 			//remove the current combination from the list of possible solutions or move to the next combination
 			if (black2 != black || white2 != white) {
 				i = possibleSolutions.erase(i);

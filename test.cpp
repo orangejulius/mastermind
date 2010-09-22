@@ -61,7 +61,8 @@ int main(int argc, char *argv[])
 	cout<<"black: "<<black<<" white: "<<white<<endl;
 
 	cout<<"s1 num games: "<<e1.getNumGames()<<endl;
-	State s1a = e1.getGameByNumber(5);
+	const State* s1a = e1.getGameByNumber(5);
+	cout<<"s1a: "<<*s1a<<endl;
 
 	State s5=s4;
 

@@ -26,15 +26,15 @@ public:
 	 * Set the secret combination that the codebreaker is trying to guess
 	 * @param newSecret	the new secret combination
 	 */
-	void setSecret(State newSecret) {
-		secret = newSecret;
+	void setSecret(unsigned int i) {
+		secret = &allStates[i];
 	}
 
 	/**
 	* Start a new game, resetting the secret and number of moves made
 	*/
 	void newGame() {
-		secret = State();
+		secret = 0;
 		guessesMade = 0;
 	}
 
@@ -66,9 +66,13 @@ public:
 	* Given an integer, return a game state that corresponds to that integer.
 	* This can be used to get all possible states by iterating from 0 to Environment::getNumGames()
 	* @param	int	the number of the game to get
-	@ @return	the state that corresponds to that number
+	@ @return	a pointer to the state that corresponds to that number
 	*/
-	State getGameByNumber(unsigned int gameNum) const;
+	const State* getGameByNumber(unsigned int gameNum) const;
+
+	inline const State* getAllGames() const {
+		return allStates;
+	}
 
 	/**
 	* Compare two states and return the Mastermind score. Note that Mastermind scores are
@@ -90,7 +94,7 @@ public:
 	 * @param white	a reference to the number of white key pegs in the score
 	 * @return bool	true if the codebreaker has not reached the maximum number of guesses
 	 */
-	bool guess(State g, unsigned int& black, unsigned int& white);
+	bool guess(State& g, unsigned int& black, unsigned int& white);
 
 
 private:
@@ -110,10 +114,13 @@ private:
 	unsigned int numGames;
 
 	///the secret combination the agent is trying to guess
-	State secret;
+	State* secret;
 
 	///a temporary place to store data during scores
 	unsigned char* colorFrequency;
+
+	///storage of all states
+	State* allStates;
 };
 
 #endif

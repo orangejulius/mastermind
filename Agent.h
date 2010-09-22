@@ -27,7 +27,7 @@ public:
 	bool play(unsigned int& guesses);
 private:
 	Environment* env;
-	list<State> possibleSolutions;
+	list<const State*> possibleSolutions;
 };
 
 #endif
