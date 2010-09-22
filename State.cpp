@@ -19,6 +19,11 @@ State::State(const State& s)
 	}
 }
 
+State::~State()
+{
+	delete[] data;
+}
+
 State::State(StateData* s, unsigned int p_numPegs)
 {
 	numPegs = p_numPegs;

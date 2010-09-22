@@ -29,6 +29,11 @@ public:
 	State(const State& s);
 
 	/**
+	 * Destroy a State object
+	 */
+	~State();
+
+	/**
 	 * Create a state with a specific combination of code pegs
 	 * @param	s	the combination to set
 	 */
