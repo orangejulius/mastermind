@@ -10,6 +10,15 @@ State::State()
 	data = 0;
 }
 
+State::State(const State& s)
+{
+	numPegs = s.numPegs;
+	data = new StateData[numPegs];
+	for (unsigned int i = 0; i < numPegs; i++) {
+		data[i] = s.data[i];
+	}
+}
+
 State::State(StateData* s, unsigned int p_numPegs)
 {
 	numPegs = p_numPegs;

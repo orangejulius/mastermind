@@ -23,6 +23,12 @@ public:
 	State();
 
 	/**
+	 * Create a state by copying another state
+	 * @param	s	the other state to copy
+	 */
+	State(const State& s);
+
+	/**
 	 * Create a state with a specific combination of code pegs
 	 * @param	s	the combination to set
 	 */
