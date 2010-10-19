@@ -10,21 +10,21 @@ using std::endl;
 int main(int argc, char *argv[])
 {
 	Environment e1(4,6,10);
-	StateData* sd1 = new unsigned char[4];
+	StateData* sd1 = new StateData[4];
 	sd1[0] = 0;
 	sd1[1] = 1;
 	sd1[2] = 2;
 	sd1[3] = 3;
 	State s1(&e1, sd1);
 
-	StateData* sd2 = new unsigned char[4];
+	StateData* sd2 = new StateData[4];
 	sd2[0] = 0;
 	sd2[1] = 1;
 	sd2[2] = 2;
 	sd2[3] = 3;
 	State s2(&e1, sd2);
 
-	StateData* sd3 = new unsigned char[4];
+	StateData* sd3 = new StateData[4];
 	sd3[0] = 1;
 	sd3[1] = 2;
 	sd3[2] = 3;
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	State s3(&e1, sd3);
 
 
-	StateData* sd4 = new unsigned char[4];
+	StateData* sd4 = new StateData[4];
 	sd4[0] = 2;
 	sd4[1] = 6;
 	sd4[2] = 3;
