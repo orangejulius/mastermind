@@ -18,6 +18,11 @@ public:
 	Environment(unsigned int p_numPegs = 4, unsigned int p_numColors = 6, unsigned int p_maxGuesses = 10);
 
 	/**
+	 * Cleanup memory used by the environment.
+	 */
+	~Environment();
+
+	/**
 	 * Set the secret combination that the codebreaker is trying to guess
 	 * @param newSecret	the new secret combination
 	 */

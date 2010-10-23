@@ -12,6 +12,10 @@ Environment::Environment(unsigned int p_numPegs, unsigned int p_numColors, unsig
 	colorFrequency = new unsigned char[numColors];
 }
 
+Environment::~Environment() {
+	delete[] colorFrequency;
+}
+
 /*
 Calculate each peg color from an integer by dividing the integer by
 progressively larger multipeles of the number of colors. This number
