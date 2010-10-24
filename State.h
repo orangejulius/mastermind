@@ -38,13 +38,6 @@ public:
 	friend ostream& operator << (ostream& out, const State& s);
 
 	/**
-	 * Compare this state to another
-	 * @param s	the state to compare
-	 * @return	true if the two states are equal
-	 */
-	bool operator == (const State& s) const;
-
-	/**
 	 * Set the current state to another state
 	 * @param s	the new state
 	 */

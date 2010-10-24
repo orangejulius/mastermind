@@ -37,20 +37,6 @@ ostream& operator << (ostream& out, const State& s)
 	return out;
 }
 
-bool State::operator == (const State& s) const
-{
-	if (env == s.env) {
-		for (unsigned int i = 0; i < env->getNumGames(); i++) {
-			if (data[i] != s.data[i]) {
-				return false;
-			}
-		}
-		return true;
-	} else {
-		return false;
-	}
-}
-
 void State::operator = (const State& s)
 {
 	env = s.env;
