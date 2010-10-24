@@ -4,41 +4,28 @@
 
 #include <cstdio>
 
-using std::min;
-
-State::State(const Environment* e)
+State::State()
 {
+	numPegs = 0;
 	data = 0;
-	env = e;
-
-	if (env) {
-		unsigned int numColors = env->getNumColors();
-		colorFrequency = new unsigned char[numColors];
-	}
 }
 
-State::State(const Environment* e, StateData* s)
+State::State(StateData* s, unsigned int p_numPegs)
 {
-	env = e;
+	numPegs = p_numPegs;
 	data = s;
-
-	if (env) {
-		unsigned int numColors = env->getNumColors();
-		colorFrequency = new unsigned char[numColors];
-	}
-}
-
-ostream& operator << (ostream& out, const State& s)
-{
-	for (unsigned i = 0; i < s.env->getNumPegs(); i++) {
-		out<<(int)s.data[i];
-	}
-
-	return out;
 }
 
 void State::operator = (const State& s)
 {
-	env = s.env;
+	numPegs = s.numPegs;
 	data = s.data;
+}
+
+ostream& operator << (ostream& out, const State& s)
+{
+	for (unsigned i = 0; i < s.numPegs; i++) {
+		out<<(int)s.data[i];
+	}
+	return out;
 }

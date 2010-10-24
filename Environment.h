@@ -29,7 +29,7 @@ public:
 	* Start a new game, resetting the secret and number of moves made
 	*/
 	void newGame() {
-		secret = State(this);
+		secret = State();
 		guessesMade = 0;
 	}
 
@@ -86,6 +86,8 @@ public:
 	 * @return bool	true if the codebreaker has not reached the maximum number of guesses
 	 */
 	bool guess(State g, unsigned int& black, unsigned int& white);
+
+
 private:
 	///the number of guesses the agent has made so far
 	unsigned int guessesMade;

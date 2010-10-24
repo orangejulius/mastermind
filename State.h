@@ -19,23 +19,14 @@ class State
 public:
 	/**
 	 * Create a state without specifying the combination
-	 * @param	e	a pointer to the environment in which this state is valid
 	 */
-	State(const Environment* e);
+	State();
 
 	/**
 	 * Create a state with a specific combination of code pegs
-	 * @param	e	a pointer to the environment in which this state is valid
 	 * @param	s	the combination to set
 	 */
-	State(const Environment* e, StateData* s);
-
-	/**
-	 * Outputs the current combination to an output buffer
-	 * @param out	the output buffer to write to
-	 * @param s	the state object to write
-	 **/
-	friend ostream& operator << (ostream& out, const State& s);
+	State(StateData* s, unsigned int p_numPegs);
 
 	/**
 	 * Set the current state to another state
@@ -43,12 +34,18 @@ public:
 	 */
 	void operator = (const State& s);
 
+	/**
+	 * Outputs the current combination to an output buffer
+	 * @param out   the output buffer to write to
+	 * @param s     the state object to write
+	 **/
+	friend ostream& operator << (ostream& out, const State& s);
+
 	friend class Environment;
 
 private:
 	StateData* data;
-	const Environment* env;
-	unsigned char* colorFrequency;
+	unsigned char numPegs;
 };
 
 #endif

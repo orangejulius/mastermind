@@ -17,7 +17,7 @@ bool Agent::play(unsigned int& guesses)
 {
 	guesses = 0;
 	unsigned int black, white;
-	State guess(env);
+	State guess;
 
 	while (1) {
 		guesses++;
@@ -28,7 +28,7 @@ bool Agent::play(unsigned int& guesses)
 			for (unsigned int i = 0; i < env->getNumPegs(); i++) {
 				guess1[i] = i % 2;
 			}
-			guess = State(env,guess1);
+			guess = State(guess1,env->getNumPegs());
 		} else {
 			//for now, just pick the first remaining possible solution after the 1st guess
 			guess = possibleSolutions.front();

@@ -3,7 +3,7 @@
 #include <cmath>
 
 Environment::Environment(unsigned int p_numPegs, unsigned int p_numColors, unsigned int p_maxGuesses)
-: maxGuesses(p_maxGuesses), numPegs(p_numPegs), numColors(p_numColors),  secret(State(this))
+: maxGuesses(p_maxGuesses), numPegs(p_numPegs), numColors(p_numColors)
 {
 	numGames = pow(numColors, numPegs);
 
@@ -27,7 +27,7 @@ State Environment::getGameByNumber(unsigned int gameNum) const
 		}
 		secret[i] = (gameNum / divisor) % numColors;
 	}
-	return State(this, secret);
+	return State(secret, numPegs);
 }
 
 void Environment::score(const State& a, const State& b, unsigned int& black, unsigned int& white)

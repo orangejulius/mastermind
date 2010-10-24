@@ -18,21 +18,21 @@ int main(int argc, char *argv[])
 	sd1[1] = 1;
 	sd1[2] = 2;
 	sd1[3] = 3;
-	State s1(&e1, sd1);
+	State s1(sd1, e1.getNumPegs());
 
 	StateData* sd2 = new StateData[4];
 	sd2[0] = 0;
 	sd2[1] = 1;
 	sd2[2] = 2;
 	sd2[3] = 3;
-	State s2(&e1, sd2);
+	State s2(sd2, e1.getNumPegs());
 
 	StateData* sd3 = new StateData[4];
 	sd3[0] = 1;
 	sd3[1] = 2;
 	sd3[2] = 3;
 	sd3[3] = 4;
-	State s3(&e1, sd3);
+	State s3(sd3, e1.getNumPegs());
 
 
 	StateData* sd4 = new StateData[4];
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	sd4[1] = 6;
 	sd4[2] = 3;
 	sd4[3] = 4;
-	State s4(&e1, sd4);
+	State s4(sd4, e1.getNumPegs());
 	unsigned int black = -1;
 	unsigned int white = -1;
 
@@ -62,11 +62,10 @@ int main(int argc, char *argv[])
 
 	cout<<"s1 num games: "<<e1.getNumGames()<<endl;
 	State s1a = e1.getGameByNumber(5);
-	cout<<"s1 game 5: "<<s1a<<endl;
 
 	State s5=s4;
 
-	State s6(&e1);
+	State s6;
 
 	s6 = s5;
 
