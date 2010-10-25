@@ -19,7 +19,10 @@ State::State(StateData* s, unsigned int p_numPegs)
 void State::operator = (const State& s)
 {
 	numPegs = s.numPegs;
-	data = s.data;
+	data = new StateData[numPegs];
+	for (unsigned int i = 0; i < numPegs; i++) {
+		data[i] = s.data[i];
+	}
 }
 
 ostream& operator << (ostream& out, const State& s)
