@@ -8,10 +8,12 @@ add_definitions(-Wall -O3 -ffast-math -fomit-frame-pointer -march=native -I/usr/
 #list all source files here
 set(mastermind_sources Agent.cpp Controller.cpp Environment.cpp State.cpp)
 
-add_executable(mastermind main.cpp ${mastermind_sources})
-add_executable(testMastermind test.cpp ${mastermind_sources})
+add_library(MastermindCore ${mastermind_sources})
+
+add_executable(mastermind main.cpp)
+add_executable(testMastermind test.cpp)
 
 find_package(Boost COMPONENTS thread REQUIRED)
 
-target_link_libraries(mastermind ${Boost_THREAD_LIBRARY})
-target_link_libraries(testMastermind ${Boost_THREAD_LIBRARY})
+target_link_libraries(mastermind MastermindCore ${Boost_THREAD_LIBRARY})
+target_link_libraries(testMastermind MastermindCore ${Boost_THREAD_LIBRARY})
