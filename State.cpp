@@ -32,6 +32,7 @@ State::State(StateData* s, unsigned int p_numPegs)
 
 void State::operator = (const State& s)
 {
+	delete[] data;
 	numPegs = s.numPegs;
 	data = new StateData[numPegs];
 	for (unsigned int i = 0; i < numPegs; i++) {
