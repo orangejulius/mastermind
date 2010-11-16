@@ -3,7 +3,7 @@ project(mastermind)
 cmake_minimum_required(VERSION 2.8)
 
 #add definitions, compiler switches, etc.
-add_definitions(-Wall -O3 -ffast-math -fomit-frame-pointer -march=native -I/usr/include)
+add_definitions(-Wall -O2 -ggdb -Wall -march=native -I/usr/include)
 
 #list all source files here
 set(mastermind_sources Agent.cpp Controller.cpp Environment.cpp State.cpp)
