@@ -30,7 +30,7 @@ State::State(StateData* s, unsigned int p_numPegs)
 	data = s;
 }
 
-void State::operator = (const State& s)
+State& State::operator = (const State& s)
 {
 	delete[] data;
 	numPegs = s.numPegs;
@@ -38,6 +38,7 @@ void State::operator = (const State& s)
 	for (unsigned int i = 0; i < numPegs; i++) {
 		data[i] = s.data[i];
 	}
+	return *this;
 }
 
 ostream& operator << (ostream& out, const State& s)

@@ -43,7 +43,7 @@ public:
 	 * Set the current state to another state
 	 * @param s	the new state
 	 */
-	void operator = (const State& s);
+	State& operator = (const State& s);
 
 	/**
 	 * Outputs the current combination to an output buffer
