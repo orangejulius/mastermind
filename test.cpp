@@ -44,23 +44,23 @@ int main(int argc, char *argv[])
 	unsigned int black = -1;
 	unsigned int white = -1;
 
-	//expect (4,0)
 	e1.score(s1,s1, black, white);
-	cout<<"black: "<<black<<" white: "<<white<<endl;
+	assert(black == 4);
+	assert(white == 0);
 
-	//expect(4,0)
 	e1.score(s1, s2, black, white);
-	cout<<"black: "<<black<<" white: "<<white<<endl;
+	assert(black == 4);
+	assert(white == 0);
 
-	//expect (0,3)
 	e1.score(s1, s3, black, white);
-	cout<<"black: "<<black<<" white: "<<white<<endl;
+	assert(black == 0);
+	assert(white == 3);
 
-	//expect (2,1)
 	e1.score(s3, s4, black, white);
-	cout<<"black: "<<black<<" white: "<<white<<endl;
+	assert(black == 2);
+	assert(white == 1);
 
-	cout<<"s1 num games: "<<e1.getNumGames()<<endl;
+	assert(e1.getNumGames() == 1296);
 	const State* s1a = e1.getGameByNumber(5);
 	cout<<"s1a: "<<*s1a<<endl;
 
