@@ -13,7 +13,8 @@ add_library(MastermindCore ${mastermind_sources})
 add_executable(mastermind main.cpp)
 add_executable(testMastermind test.cpp)
 
-find_package(Boost COMPONENTS thread REQUIRED)
+find_package(Boost COMPONENTS thread system REQUIRED)
 
-target_link_libraries(mastermind MastermindCore ${Boost_THREAD_LIBRARY})
-target_link_libraries(testMastermind MastermindCore ${Boost_THREAD_LIBRARY})
+target_link_libraries(mastermind MastermindCore ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY})
+target_link_libraries(testMastermind MastermindCore ${Boost_THREAD_LIBRARY}
+	${Boost_SYSTEM_LIBRARY})
